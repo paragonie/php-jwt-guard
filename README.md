@@ -38,8 +38,34 @@ $keyring = (new KeyRing())
     ->withHS256('key-id-foo', 'raw-key-data-goes-here')
     ->withHS384('key-id-bar', 'raw-key-data-goes-here-too')
     // ...
-    ->withPS512('key-id-bar', 'raw-key-data-goes-here-too');
+    ->withPS384('key-id-xyzzy', 'raw-key-data-goes-here-too')
+    ->withPS512('key-id-thud', 'raw-key-data-goes-here-too');
 
 // Pass it to JWT Dcode:
 JWT::decode($jwt, $keyring, array($allowedAlgs));
 ```
+
+### Using the KeyRing class
+
+#### KeyRing->with($alg, $keyId, $rawKeyData)
+
+Parameters:
+
+1. `string` $alg - The algorithm this key is intended for
+2. `string` $keyId - The `kid` header that maps to this key
+3. `string` $rawKeyData - The actual key material. For asymmetric keys,
+   this is usually PEM-encoded.
+
+Returns the KeyRing object. Chainable.
+
+### KeyRing->count()
+
+Returns an integer.
+
+### KeyRing->partition($alg)
+
+Parameters:
+
+1. `string` $alg - The algorithm this key is intended for
+
+Returns a new KeyRing object with a subset of all supported keys.

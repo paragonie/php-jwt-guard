@@ -3,6 +3,7 @@ namespace ParagonIE\PhpJwtGuard;
 
 use ArrayAccess;
 use RuntimeException;
+use SodiumException;
 
 class KeyRing implements ArrayAccess
 {
@@ -17,39 +18,82 @@ class KeyRing implements ArrayAccess
         $this->mapping = $mapping;
     }
 
+    /**
+     * Count the number of keys in the keyring
+     *
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->mapping);
+    }
+
+    /**
+     * Obtain all the keys intended for a specific algorithm.
+     *
+     * @param string $alg
+     * @return KeyRing
+     * @throws SodiumException
+     */
+    public function partition($alg)
+    {
+        $out = new KeyRing();
+        foreach ($this->mapping as $keyId => $key) {
+            if ($key->isValidForAlg($alg)) {
+                $out[$keyId] = $key;
+            }
+        }
+        return $out;
+    }
+
     public function withHS256($keyId, $rawKeyData)
     {
-        $this->mapping[$keyId] = new JWTKey($rawKeyData, 'HS256');
-        return $this;
+        return $this->with('HS256', $keyId, $rawKeyData);
     }
 
     public function withHS384($keyId, $rawKeyData)
     {
-        $this->mapping[$keyId] = new JWTKey($rawKeyData, 'HS384');
-        return $this;
+        return $this->with('HS384', $keyId, $rawKeyData);
     }
 
     public function withHS512($keyId, $rawKeyData)
     {
-        $this->mapping[$keyId] = new JWTKey($rawKeyData, 'HS512');
-        return $this;
+        return $this->with('HS512', $keyId, $rawKeyData);
     }
 
     public function withPS256($keyId, $rawKeyData)
     {
-        $this->mapping[$keyId] = new JWTKey($rawKeyData, 'PS256');
-        return $this;
+        return $this->with('PS256', $keyId, $rawKeyData);
     }
 
     public function withPS384($keyId, $rawKeyData)
     {
-        $this->mapping[$keyId] = new JWTKey($rawKeyData, 'PS384');
-        return $this;
+        return $this->with('PS384', $keyId, $rawKeyData);
     }
 
     public function withPS512($keyId, $rawKeyData)
     {
-        $this->mapping[$keyId] = new JWTKey($rawKeyData, 'PS512');
+        return $this->with('PS512', $keyId, $rawKeyData);
+    }
+
+    public function withRS256($keyId, $rawKeyData)
+    {
+        return $this->with('RS256', $keyId, $rawKeyData);
+    }
+
+    public function withRS384($keyId, $rawKeyData)
+    {
+        return $this->with('RS384', $keyId, $rawKeyData);
+    }
+
+    public function withRS512($keyId, $rawKeyData)
+    {
+        return $this->with('RS512', $keyId, $rawKeyData);
+    }
+
+    public function with($alg, $keyId, $rawKeyData)
+    {
+        $this->mapping[$keyId] = new JWTKey($rawKeyData, $alg);
         return $this;
     }
 
