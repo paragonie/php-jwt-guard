@@ -101,6 +101,6 @@ class JWTTest extends TestCase
 
         $payload = array('sub' => 'phpunit');
         $encoded = JWT::encode($payload, $keyring, 'HS256', 'foo'); // should not throw exception
-        $this->assertIsString($encoded);
+        $this->assertTrue(is_string($encoded), 'Encode failed');
     }
 }
