@@ -1,10 +1,10 @@
 # PHP-JWT-Guard
 
-[![Build Status](https://github.com/paragonie-security/php-jwt-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/paragonie-security/php-jwt-guard/actions)
-[![Latest Stable Version](https://poser.pugx.org/paragonie-security/php-jwt-guard/v/stable)](https://packagist.org/packages/paragonie-security/php-jwt-guard)
-[![Latest Unstable Version](https://poser.pugx.org/paragonie-security/php-jwt-guard/v/unstable)](https://packagist.org/packages/paragonie-security/php-jwt-guard)
-[![License](https://poser.pugx.org/paragonie-security/php-jwt-guard/license)](https://packagist.org/packages/paragonie-security/php-jwt-guard)
-[![Downloads](https://img.shields.io/packagist/dt/paragonie-security/php-jwt-guard.svg)](https://packagist.org/packages/paragonie-security/php-jwt-guard)
+[![Build Status](https://github.com/paragonie/php-jwt-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/paragonie/php-jwt-guard/actions)
+[![Latest Stable Version](https://poser.pugx.org/paragonie/php-jwt-guard/v/stable)](https://packagist.org/packages/paragonie/php-jwt-guard)
+[![Latest Unstable Version](https://poser.pugx.org/paragonie/php-jwt-guard/v/unstable)](https://packagist.org/packages/paragonie/php-jwt-guard)
+[![License](https://poser.pugx.org/paragonie/php-jwt-guard/license)](https://packagist.org/packages/paragonie/php-jwt-guard)
+[![Downloads](https://img.shields.io/packagist/dt/paragonie/php-jwt-guard.svg)](https://packagist.org/packages/paragonie/php-jwt-guard)
 
 
 Protect your code from being impacted by 
