@@ -5,6 +5,7 @@
       "ParagonIE\\PhpJwtGuard\\": "src"
     }
   },
+  "license": "BSD-3-Clause",
   "require": {
     "php": ">=5.3.0",
     "firebase/php-jwt": "^5",
