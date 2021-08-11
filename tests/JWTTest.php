@@ -60,7 +60,7 @@ class JWTTest extends TestCase
             'bar' // Incorrect Key ID
         );
 
-        $this->expectException(UnexpectedValueException::class);
+        $this->expectException('UnexpectedValueException');
         JWT::decode($bad, $keyring, array('HS256'));
     }
 }
